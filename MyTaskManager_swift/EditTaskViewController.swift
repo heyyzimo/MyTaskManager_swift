@@ -32,6 +32,7 @@ class EditTaskViewController: UIViewController {
     }
 
     @objc func saveButtonTapped() {
+        // Validate the input fields
         guard let title = editTaskScreen.titleTextField.text, !title.isEmpty else {
             showAlert(message: "Please enter a title.")
             return
@@ -46,12 +47,15 @@ class EditTaskViewController: UIViewController {
         task?.description = description
         task?.status = editTaskScreen.statusSwitch.isOn ? "Completed" : "Pending"
 
+        // Notify the delegate
         if let updatedTask = task {
-            delegate?.didUpdateTask(updatedTask) // Notify delegate
+            delegate?.didUpdateTask(updatedTask)
         }
 
-        navigationController?.popViewController(animated: true)
+        // Navigate back to the first page (root view controller)
+        navigationController?.popToRootViewController(animated: true)
     }
+
 
     func showAlert(message: String) {
         let alert = UIAlertController(title: "Invalid Input", message: message, preferredStyle: .alert)
