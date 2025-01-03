@@ -85,33 +85,32 @@ class AddTaskViewController: UIViewController {
     
     
     @objc func onSaveBarButtonTapped() {
-        
-        //show alert
+        // Validate title and description
         guard let title = addTaskScreen.textFieldTitle.text, !title.isEmpty else {
-                showAlert(message: "Please enter a title.title cant be empty")
-                return
-            }
-        
-        guard let description = addTaskScreen.textFieldDescription.text,!description.isEmpty else {
+            showAlert(message: "Please enter a title. Title can't be empty.")
+            return
+        }
+        guard let description = addTaskScreen.textFieldDescription.text, !description.isEmpty else {
             showAlert(message: "Please enter a valid description.")
             return
         }
         
-        guard let status = addTaskScreen.textFieldStatus.text, !status.isEmpty else {
-            showAlert(message: "please enter a valid status")
-            return
-        }
+        // Get status from the UISwitch
+        let status = addTaskScreen.statusSwitch.isOn ? "Completed" : "Pending"
         
-       
-        self.navigationItem.backButtonTitle = "Create Profile"
-
-        
-        let newTask = Task(title: title, description: description, status: status, image: pickedImage ?? (UIImage(systemName: "photo"))!
+        // Create new task
+        let newTask = Task(
+            title: title,
+            description: description,
+            status: status,
+            image: pickedImage ?? UIImage(systemName: "photo")!
         )
-                                 
+        
+        // Pass the new task to the delegate
         delegate.delegateOnAddTask(task: newTask)
         navigationController?.popViewController(animated: true)
     }
+
 
     
   

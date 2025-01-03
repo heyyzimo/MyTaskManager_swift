@@ -1,26 +1,18 @@
-//
-//  AddTaskView.swift
-//  hw4
-//
-//  Created by Zimo Liu on 10/3/24.
-//
-
 import UIKit
+
 
 class AddTaskView: UIView {
     
     var labelAddANewTask: UILabel!
     var labelPhoto: UILabel!
-
     var buttonTakePhoto: UIButton!
-    var selectStatusTypeButton: UIButton!
     var buttonAdd: UIButton!
-
-    
     var textFieldTitle: UITextField!
     var textFieldDescription: UITextField!
-    var textFieldStatus: UITextField!
-
+    
+    // New UI Elements for Toggle
+    var statusSwitch: UISwitch!
+    var statusLabel: UILabel!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,14 +23,10 @@ class AddTaskView: UIView {
         // Initializing the UI elements
         setupLabelAddANewTask()
         setupLabelPhoto()
-
         setupTextFieldTitle()
         setupTextFieldDescription()
-        setupTextFieldStatus()
-       
-        
+        setupStatusSwitch()  // New setup for UISwitch
         setupbuttonTakePhoto()
-        setupselectStatusTypeButton()
         setupbuttonAdd()
         
         // Initializing constraints
@@ -48,7 +36,7 @@ class AddTaskView: UIView {
     // MARK: Initializing constraints
     func initConstraints() {
         NSLayoutConstraint.activate([
-            // Create Profile Label
+            // Add a New Task Label
             labelAddANewTask.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
             labelAddANewTask.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             
@@ -58,57 +46,64 @@ class AddTaskView: UIView {
             textFieldTitle.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
             // Description TextField
-            textFieldDescription.topAnchor.constraint(equalTo: labelPhoto.bottomAnchor, constant: 16),
+            textFieldDescription.topAnchor.constraint(equalTo: textFieldTitle.bottomAnchor, constant: 16),
             textFieldDescription.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             textFieldDescription.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
+            // Status Switch and Label
+            statusSwitch.topAnchor.constraint(equalTo: textFieldDescription.bottomAnchor, constant: 16),
+            statusSwitch.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             
-            buttonTakePhoto.topAnchor.constraint(equalTo: textFieldTitle.bottomAnchor, constant: 16),
+            statusLabel.centerYAnchor.constraint(equalTo: statusSwitch.centerYAnchor),
+            statusLabel.leadingAnchor.constraint(equalTo: statusSwitch.trailingAnchor, constant: 8),
+            
+            // Take Photo Button
+            buttonTakePhoto.topAnchor.constraint(equalTo: statusSwitch.bottomAnchor, constant: 16),
             buttonTakePhoto.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             buttonTakePhoto.widthAnchor.constraint(equalToConstant: 100),
             buttonTakePhoto.heightAnchor.constraint(equalToConstant: 100),
             
-            labelPhoto.topAnchor.constraint(equalTo: buttonTakePhoto.bottomAnchor, constant: 0),
+            labelPhoto.topAnchor.constraint(equalTo: buttonTakePhoto.bottomAnchor, constant: 8),
             labelPhoto.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-
-                   
-             
-            textFieldStatus.topAnchor.constraint(equalTo: textFieldDescription.bottomAnchor, constant: 11),
-            textFieldStatus.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            textFieldStatus.widthAnchor.constraint(lessThanOrEqualTo: self.safeAreaLayoutGuide.widthAnchor),
-
-        
         ])
     }
     
-    func setupselectStatusTypeButton(){
-        selectStatusTypeButton = UIButton(type: .system)
-        selectStatusTypeButton.setTitle("Home", for: .normal)
-        selectStatusTypeButton.showsMenuAsPrimaryAction = true
-        selectStatusTypeButton.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(selectStatusTypeButton)
+    func setupStatusSwitch() {
+        // UISwitch for status
+        statusSwitch = UISwitch()
+        statusSwitch.isOn = false // Default to Pending
+        statusSwitch.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(statusSwitch)
         
+        // Label for UISwitch
+        statusLabel = UILabel()
+        statusLabel.text = "Task Completed"
+        statusLabel.font = UIFont.systemFont(ofSize: 16)
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(statusLabel)
     }
     
-        func setupbuttonTakePhoto(){
-            buttonTakePhoto = UIButton(type: .system)
-            buttonTakePhoto.setTitle("", for: .normal)
-            buttonTakePhoto.setImage(UIImage(systemName: "camera.fill"), for: .normal)
-            buttonTakePhoto.contentHorizontalAlignment = .fill
-            buttonTakePhoto.contentVerticalAlignment = .fill
-            buttonTakePhoto.imageView?.contentMode = .scaleAspectFit
-            buttonTakePhoto.showsMenuAsPrimaryAction = true
-            buttonTakePhoto.translatesAutoresizingMaskIntoConstraints = false
-            self.addSubview(buttonTakePhoto)
-        }
     
-        func setupbuttonAdd(){
-            buttonAdd = UIButton(type: .system)
-            buttonAdd.setTitle("Add Expense", for: .normal)
-            buttonAdd.translatesAutoresizingMaskIntoConstraints = false
-            self.addSubview(buttonAdd)
-        }
-    
+
+    func setupbuttonTakePhoto(){
+        buttonTakePhoto = UIButton(type: .system)
+        buttonTakePhoto.setTitle("", for: .normal)
+        buttonTakePhoto.setImage(UIImage(systemName: "camera.fill"), for: .normal)
+        buttonTakePhoto.contentHorizontalAlignment = .fill
+        buttonTakePhoto.contentVerticalAlignment = .fill
+        buttonTakePhoto.imageView?.contentMode = .scaleAspectFit
+        buttonTakePhoto.showsMenuAsPrimaryAction = true
+        buttonTakePhoto.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(buttonTakePhoto)
+    }
+
+    func setupbuttonAdd(){
+        buttonAdd = UIButton(type: .system)
+        buttonAdd.setTitle("Add Expense", for: .normal)
+        buttonAdd.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(buttonAdd)
+    }
+
     
     func setupLabelAddANewTask() {
         labelAddANewTask = UILabel()
@@ -144,15 +139,6 @@ class AddTaskView: UIView {
         textFieldDescription.borderStyle = .roundedRect
         textFieldDescription.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(textFieldDescription)
-    }
-    
-    func setupTextFieldStatus() {
-        textFieldStatus = UITextField()
-        textFieldStatus.placeholder = "Status"
-        textFieldStatus.keyboardType = .phonePad
-        textFieldStatus.borderStyle = .roundedRect
-        textFieldStatus.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(textFieldStatus)
     }
     
   

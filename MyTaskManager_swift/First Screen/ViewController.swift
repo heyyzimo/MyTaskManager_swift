@@ -2,6 +2,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    protocol TaskDeletionDelegate: AnyObject {
+        func didDeleteTask(_ taskID: UUID)
+    }
+
+    
     let firstScreen = FirstScreenView()
     var tasks = [Task]()
     //let Numbers = ["Cell", "Work", "Home"]
@@ -30,6 +35,8 @@ class ViewController: UIViewController {
 
     }
     
+    
+    
     @objc func onAddBarButtonTapped(){
         let addTaskController = AddTaskViewController()
         addTaskController.delegate = self
@@ -51,7 +58,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tasks", for: indexPath) as! TableViewTaskCell
-        cell.labelNumber.text = tasks[indexPath.row].status
+        cell.labelStatus.text = tasks[indexPath.row].status
         
         if let uwTitle = tasks[indexPath.row].title{
             cell.labelTitle.text = "\(uwTitle)"
@@ -61,7 +68,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         }
         
         if let uwstatus = tasks[indexPath.row].status{
-            cell.labelNumber.text = "\(uwstatus))"
+            cell.labelStatus.text = "\(uwstatus)"
         }
         
         if let uwImage = tasks[indexPath.row].image{

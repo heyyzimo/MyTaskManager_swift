@@ -5,8 +5,7 @@ class TableViewTaskCell: UITableViewCell {
     var wrapperCellView: UIView!
     var labelTitle: UILabel!
     var labelDescription: UILabel!
-    var labelNumber: UILabel!
-    var labelstatus : UILabel!
+    var labelStatus : UILabel!
     
     var imageReceipt: UIImageView!
 
@@ -16,8 +15,7 @@ class TableViewTaskCell: UITableViewCell {
         setupWrapperCellView()
         setupLabelTitle()
         setupLabelDescription()
-        setupLabelNumber()
-        setupLabelstatus()
+        setupLabelStatus()
         
         setupimageReceipt()
         
@@ -63,21 +61,17 @@ class TableViewTaskCell: UITableViewCell {
             labelTitle.translatesAutoresizingMaskIntoConstraints = false
             wrapperCellView.addSubview(labelTitle)
         }
-        func setupLabelDescription(){
-            labelDescription = UILabel()
-            labelDescription.translatesAutoresizingMaskIntoConstraints = false
-            wrapperCellView.addSubview(labelDescription)
-        }
-        func setupLabelNumber(){
-            labelNumber = UILabel()
-            labelNumber.translatesAutoresizingMaskIntoConstraints = false
-            wrapperCellView.addSubview(labelNumber)
-        }
+    func setupLabelDescription(){
+        labelDescription = UILabel()
+        labelDescription.translatesAutoresizingMaskIntoConstraints = false
+        wrapperCellView.addSubview(labelDescription)
+    }
     
-    func setupLabelstatus(){
-        labelstatus = UILabel()
-        labelstatus.translatesAutoresizingMaskIntoConstraints = false
-        wrapperCellView.addSubview(labelstatus)
+    
+    func setupLabelStatus(){
+        labelStatus = UILabel()
+        labelStatus.translatesAutoresizingMaskIntoConstraints = false
+        wrapperCellView.addSubview(labelStatus)
     }
         
     
@@ -117,9 +111,9 @@ class TableViewTaskCell: UITableViewCell {
                labelDescription.leadingAnchor.constraint(equalTo: imageReceipt.trailingAnchor),
                labelDescription.heightAnchor.constraint(equalToConstant: 20),
                
-               labelNumber.topAnchor.constraint(equalTo: labelDescription.bottomAnchor, constant: 4),
-               labelNumber.leadingAnchor.constraint(equalTo: imageReceipt.trailingAnchor),
-               labelNumber.heightAnchor.constraint(equalToConstant: 20),
+               labelStatus.topAnchor.constraint(equalTo: labelDescription.bottomAnchor, constant: 4),
+               labelStatus.leadingAnchor.constraint(equalTo: imageReceipt.trailingAnchor),
+               labelStatus.heightAnchor.constraint(equalToConstant: 20),
                
                
                imageReceipt.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 8),
@@ -128,7 +122,6 @@ class TableViewTaskCell: UITableViewCell {
                imageReceipt.heightAnchor.constraint(equalTo: wrapperCellView.heightAnchor, constant: -20),
                imageReceipt.widthAnchor.constraint(equalTo: wrapperCellView.heightAnchor, constant: -20),
                
-//               wrapperCellView.heightAnchor.constraint(equalToConstant: 76)
                 wrapperCellView.heightAnchor.constraint(equalToConstant: 104)
 
            ])
