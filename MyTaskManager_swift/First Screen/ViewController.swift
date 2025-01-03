@@ -22,7 +22,6 @@ class ViewController: UIViewController {
         title = "My Tasks"
         
         firstScreen.tableViewTask.separatorStyle = .none
-
         
         firstScreen.tableViewTask.delegate = self
         firstScreen.tableViewTask.dataSource = self
@@ -79,12 +78,21 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let detailScreenViewController = DetailsScreenViewController()
         detailScreenViewController.receivedPackage = tasks[indexPath.row]
-        
-        // Navigating to DisplayViewController
+        detailScreenViewController.deletionDelegate = self // Set the delegate
         navigationController?.pushViewController(detailScreenViewController, animated: true)
-        }
+    }
+
     
 }
+
+extension ViewController: TaskDeletionDelegate {
+    func didDeleteTask(_ taskID: UUID) {
+        if let index = tasks.firstIndex(where: { $0.id == taskID }) {
+            tasks.remove(at: index)
+            firstScreen.tableViewTask.reloadData()
+        }
+    }
+}
+

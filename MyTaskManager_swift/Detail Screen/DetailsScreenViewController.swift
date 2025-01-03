@@ -1,87 +1,96 @@
 import UIKit
 
+protocol TaskDeletionDelegate: AnyObject {
+    func didDeleteTask(_ taskID: UUID)
+}
+
 class DetailsScreenViewController: UIViewController {
     let DetailScreen = DetailScreenView()
     
-    // Property to hold the received data package from ViewController
+    // Property to hold the received task from ViewController
     var receivedPackage: Task!
+    
+    // Delegate to notify deletion
+    weak var deletionDelegate: TaskDeletionDelegate?
 
     override func loadView() {
         view = DetailScreen
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Add Edit Button
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-               barButtonSystemItem: .edit, target: self, action: #selector(editButtonTapped)
-           )
+            barButtonSystemItem: .edit, target: self, action: #selector(editButtonTapped)
+        )
         
+        // Add Delete Button Action
+        DetailScreen.buttonDelete.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        
+        // Populate the UI with the task details
         if let image = receivedPackage.image {
-                    DetailScreen.imageReceipt.image = image // Assuming DetailScreen has an UIImageView property called imageReceipt
-                } else {
-                    // Set a default image if none is provided
-                    DetailScreen.imageReceipt.image = UIImage(systemName: "person.circle")
-                }
+            DetailScreen.imageReceipt.image = image
+        } else {
+            DetailScreen.imageReceipt.image = UIImage(systemName: "person.circle")
+        }
         
-
         if let title = receivedPackage.title, !title.isEmpty {
             DetailScreen.labelTitle.text = "\(title)"
         }
-
+        
         if let description = receivedPackage.description, !description.isEmpty {
             DetailScreen.labelDescription.text = "Description: \(description)"
         }
-
+        
         if let status = receivedPackage.status {
-            DetailScreen.labelStatus.text = "Status: \(status))"
+            DetailScreen.labelStatus.text = "Status: \(status)"
         }
-        
-        
-        
     }
     
     // MARK: - Edit Button Action
-        @objc func editButtonTapped() {
-            // Create instance of EditTaskViewController
-            let editVC = EditTaskViewController()
-            
-            // Pass the current task (receivedPackage) to the edit view controller
-            editVC.task = receivedPackage
-            
-            // Set the delegate to self so we can receive updated task info
-            editVC.delegate = self
-            
-            // Push EditTaskViewController onto the navigation stack
-            navigationController?.pushViewController(editVC, animated: true)
-        }
+    @objc func editButtonTapped() {
+        // Create an instance of EditTaskViewController
+        let editVC = EditTaskViewController()
+        
+        // Pass the current task to the edit view controller
+        editVC.task = receivedPackage
+        
+        // Set the delegate to self so we can receive updates
+        editVC.delegate = self
+        
+        // Navigate to EditTaskViewController
+        navigationController?.pushViewController(editVC, animated: true)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Delete Button Action
+    @objc func deleteButtonTapped() {
+        // Confirm Deletion
+        let alert = UIAlertController(
+            title: "Delete Task",
+            message: "Are you sure you want to delete this task?",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+            self.deletionDelegate?.didDeleteTask(self.receivedPackage.id)
+            self.navigationController?.popViewController(animated: true)
+        }))
+        present(alert, animated: true)
     }
-    */
-
-
-protocol EditTaskDelegate: AnyObject {
-    func didUpdateTask(_ task: Task)
 }
 
+// MARK: - EditTaskDelegate
 extension DetailsScreenViewController: EditTaskDelegate {
     func didUpdateTask(_ task: Task) {
-        // Update the current task with the edited details
+        // Update the current task
         receivedPackage = task
         
-        // Update the UI with the new details
+        // Refresh the UI with the updated task details
         DetailScreen.labelTitle.text = task.title
         DetailScreen.labelDescription.text = "Description: \(task.description ?? "")"
-        DetailScreen.labelStatus.text = "Status: \(task.status ?? "") "
-
+        DetailScreen.labelStatus.text = "Status: \(task.status ?? "")"
     }
 }
+
+
