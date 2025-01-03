@@ -5,7 +5,8 @@ class EditTaskScreenView: UIView {
     // UI elements
     let titleTextField = UITextField()
     let descriptionTextField = UITextField()
-    let statusTextField = UITextField()
+    let statusSwitch = UISwitch()  // Toggle for status
+    let statusLabel = UILabel()    // Label for switch
     let photoButton = UIButton()
 
     override init(frame: CGRect) {
@@ -18,7 +19,6 @@ class EditTaskScreenView: UIView {
         setupView()
     }
 
-    // Setup the layout and appearance of the UI elements
     private func setupView() {
         // Set the background color
         backgroundColor = .white
@@ -30,9 +30,10 @@ class EditTaskScreenView: UIView {
         descriptionTextField.placeholder = "Enter description"
         descriptionTextField.borderStyle = .roundedRect
 
-        statusTextField.placeholder = "Enter status"
-        statusTextField.borderStyle = .roundedRect
-
+        // Customize the status switch
+        statusLabel.text = "Task Completed"
+        statusLabel.font = UIFont.systemFont(ofSize: 16)
+        statusSwitch.isOn = false // Default to Pending
 
         // Customize the photo button
         photoButton.setTitle("Select Photo", for: .normal)
@@ -44,8 +45,8 @@ class EditTaskScreenView: UIView {
         // Add the subviews
         addSubview(titleTextField)
         addSubview(descriptionTextField)
-        addSubview(statusTextField)
- 
+        addSubview(statusSwitch)
+        addSubview(statusLabel)
         addSubview(photoButton)
 
         // Set up AutoLayout constraints for each UI element
@@ -53,14 +54,12 @@ class EditTaskScreenView: UIView {
     }
 
     private func setupConstraints() {
-        // Disable autoresizing mask for AutoLayout
         titleTextField.translatesAutoresizingMaskIntoConstraints = false
         descriptionTextField.translatesAutoresizingMaskIntoConstraints = false
-        statusTextField.translatesAutoresizingMaskIntoConstraints = false
-       
+        statusSwitch.translatesAutoresizingMaskIntoConstraints = false
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
         photoButton.translatesAutoresizingMaskIntoConstraints = false
 
-        // Add constraints for the UI elements
         NSLayoutConstraint.activate([
             titleTextField.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
             titleTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
@@ -77,12 +76,11 @@ class EditTaskScreenView: UIView {
             descriptionTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             descriptionTextField.heightAnchor.constraint(equalToConstant: 40),
 
-            statusTextField.topAnchor.constraint(equalTo: descriptionTextField.bottomAnchor, constant: 20),
-            statusTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40),
-
+            statusSwitch.topAnchor.constraint(equalTo: descriptionTextField.bottomAnchor, constant: 20),
+            statusSwitch.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             
+            statusLabel.centerYAnchor.constraint(equalTo: statusSwitch.centerYAnchor),
+            statusLabel.leadingAnchor.constraint(equalTo: statusSwitch.trailingAnchor, constant: 10),
         ])
     }
 }

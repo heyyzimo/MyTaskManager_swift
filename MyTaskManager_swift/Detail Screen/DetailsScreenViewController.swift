@@ -12,6 +12,8 @@ class DetailsScreenViewController: UIViewController {
     
     // Delegate to notify deletion
     weak var deletionDelegate: TaskDeletionDelegate?
+    weak var editDelegate: EditTaskDelegate?
+
 
     override func loadView() {
         view = DetailScreen
@@ -48,20 +50,12 @@ class DetailsScreenViewController: UIViewController {
         }
     }
     
-    // MARK: - Edit Button Action
     @objc func editButtonTapped() {
-        // Create an instance of EditTaskViewController
-        let editVC = EditTaskViewController()
-        
-        // Pass the current task to the edit view controller
-        editVC.task = receivedPackage
-        
-        // Set the delegate to self so we can receive updates
-        editVC.delegate = self
-        
-        // Navigate to EditTaskViewController
-        navigationController?.pushViewController(editVC, animated: true)
-    }
+            let editVC = EditTaskViewController()
+            editVC.task = receivedPackage
+            editVC.delegate = editDelegate // Pass the delegate
+            navigationController?.pushViewController(editVC, animated: true)
+        }
     
     // MARK: - Delete Button Action
     @objc func deleteButtonTapped() {

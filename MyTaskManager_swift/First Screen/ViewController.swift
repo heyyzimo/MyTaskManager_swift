@@ -80,9 +80,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailScreenViewController = DetailsScreenViewController()
         detailScreenViewController.receivedPackage = tasks[indexPath.row]
-        detailScreenViewController.deletionDelegate = self // Set the delegate
+        detailScreenViewController.deletionDelegate = self
+        detailScreenViewController.editDelegate = self // Set the delegate
         navigationController?.pushViewController(detailScreenViewController, animated: true)
     }
+
 
     
 }
@@ -95,4 +97,14 @@ extension ViewController: TaskDeletionDelegate {
         }
     }
 }
+extension ViewController: EditTaskDelegate {
+    func didUpdateTask(_ updatedTask: Task) {
+        // Find and update the task in the `tasks` array
+        if let index = tasks.firstIndex(where: { $0.id == updatedTask.id }) {
+            tasks[index] = updatedTask
+            firstScreen.tableViewTask.reloadData() // Reload the table view to reflect changes
+        }
+    }
+}
+
 
