@@ -84,7 +84,7 @@
 				8A1F97752CAEE1140096A795 /* SceneDelegate.swift */,
 				8A1F97732CAEE1140096A795 /* AppDelegate.swift */,
 				8A1F97962CAEEE9A0096A795 /* Utilities.swift */,
-				8A1F97952CAEED160096A795 /* Add Contact Screen */,
+				8A1F97952CAEED160096A795 /* Add Tasks Screen */,
 				8A1F978F2CAEEBFB0096A795 /* Data models */,
 				8A1F97982CAF20E00096A795 /* First Screen */,
 				8A1F97792CAEE1140096A795 /* Main.storyboard */,
@@ -103,13 +103,13 @@
 			path = "Data models";
 			sourceTree = "<group>";
 		};
-		8A1F97952CAEED160096A795 /* Add Contact Screen */ = {
+		8A1F97952CAEED160096A795 /* Add Tasks Screen */ = {
 			isa = PBXGroup;
 			children = (
 				8A1F97912CAEECBB0096A795 /* AddTaskView.swift */,
 				8A1F97932CAEECDE0096A795 /* AddTaskViewController.swift */,
 			);
-			path = "Add Contact Screen";
+			path = "Add Tasks Screen";
 			sourceTree = "<group>";
 		};
 		8A1F97982CAF20E00096A795 /* First Screen */ = {
