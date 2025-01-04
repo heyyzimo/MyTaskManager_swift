@@ -1,7 +1,7 @@
 download the zip file, open MyTaskManager_swift.xcodeproj on xcode, click the run button. and it will work
 
 1---first screen :
-searching bar on the open, click '+' on the right top corner, and you can add a task there
+searching bar on the top, click '+' on the right top corner, and you can add a task there
 
 2--- jump to add task screen:
 put title, description, toggle complected/pending, pic
