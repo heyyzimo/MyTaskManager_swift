@@ -17,16 +17,17 @@ class EditTaskViewController: UIViewController {
         if let task = task {
             editTaskScreen.titleTextField.text = task.title
             editTaskScreen.descriptionTextField.text = task.description
-            editTaskScreen.statusSwitch.isOn = (task.status == "Completed") // Set switch based on status
-            
+            editTaskScreen.statusSwitch.isOn = (task.status == "Completed") // true on, false not on
             if let image = task.image {
                 editTaskScreen.photoButton.setImage(image, for: .normal)
             } else {
+                //default pic
                 editTaskScreen.photoButton.setImage(UIImage(systemName: "person.circle"), for: .normal)
             }
         }
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
+            //右上角save action
             barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped)
         )
     }
@@ -47,12 +48,12 @@ class EditTaskViewController: UIViewController {
         task?.description = description
         task?.status = editTaskScreen.statusSwitch.isOn ? "Completed" : "Pending"
 
-        // Notify the delegate
+        // Notify the delegate + go to viewcontrooller extensuon updated task and reload
         if let updatedTask = task {
             delegate?.didUpdateTask(updatedTask)
         }
 
-        // Navigate back to the first page (root view controller)
+        // Navigate back to the first page (root view controller) stack root
         navigationController?.popToRootViewController(animated: true)
     }
 

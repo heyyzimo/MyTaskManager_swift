@@ -1,8 +1,6 @@
 import UIKit
 
-protocol TaskDeletionDelegate: AnyObject {
-    func didDeleteTask(_ taskID: UUID)
-}
+
 
 class DetailsScreenViewController: UIViewController {
     let DetailScreen = DetailScreenView()

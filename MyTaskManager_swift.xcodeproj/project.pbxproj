@@ -19,7 +19,6 @@
 		8A1F978E2CAEE69D0096A795 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1F978D2CAEE69D0096A795 /* Task.swift */; };
 		8A1F97922CAEECBB0096A795 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1F97912CAEECBB0096A795 /* AddTaskView.swift */; };
 		8A1F97942CAEECDE0096A795 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1F97932CAEECDE0096A795 /* AddTaskViewController.swift */; };
-		8A1F97972CAEEE9A0096A795 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1F97962CAEEE9A0096A795 /* Utilities.swift */; };
 		8A1F979B2CAF21B40096A795 /* DetailScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1F979A2CAF21B40096A795 /* DetailScreenView.swift */; };
 		8A71DB272CBCAEFE0068CF09 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A71DB262CBCAEFE0068CF09 /* EditTaskViewController.swift */; };
 		8A71DB2C2CBCC4FE0068CF09 /* EditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A71DB2B2CBCC4FD0068CF09 /* EditTaskView.swift */; };
@@ -41,7 +40,6 @@
 		8A1F978D2CAEE69D0096A795 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		8A1F97912CAEECBB0096A795 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 		8A1F97932CAEECDE0096A795 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
-		8A1F97962CAEEE9A0096A795 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8A1F979A2CAF21B40096A795 /* DetailScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreenView.swift; sourceTree = "<group>"; };
 		8A71DB262CBCAEFE0068CF09 /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditTaskViewController.swift; path = ../EditTaskViewController.swift; sourceTree = "<group>"; };
 		8A71DB2B2CBCC4FD0068CF09 /* EditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskView.swift; sourceTree = "<group>"; };
@@ -81,9 +79,6 @@
 				8A82B7932D27A1AB00BADB2B /* Protocols.swift */,
 				8A71DB2A2CBCC4B40068CF09 /* Edit Screen */,
 				8A1F97992CAF21720096A795 /* Detail Screen */,
-				8A1F97752CAEE1140096A795 /* SceneDelegate.swift */,
-				8A1F97732CAEE1140096A795 /* AppDelegate.swift */,
-				8A1F97962CAEEE9A0096A795 /* Utilities.swift */,
 				8A1F97952CAEED160096A795 /* Add Tasks Screen */,
 				8A1F978F2CAEEBFB0096A795 /* Data models */,
 				8A1F97982CAF20E00096A795 /* First Screen */,
@@ -91,6 +86,8 @@
 				8A1F977E2CAEE1180096A795 /* LaunchScreen.storyboard */,
 				246910472CAF3AAE00315094 /* Info.plist */,
 				8A1F977C2CAEE1180096A795 /* Assets.xcassets */,
+				8A1F97752CAEE1140096A795 /* SceneDelegate.swift */,
+				8A1F97732CAEE1140096A795 /* AppDelegate.swift */,
 			);
 			path = MyTaskManager_swift;
 			sourceTree = "<group>";
@@ -221,7 +218,6 @@
 				8A71DB2C2CBCC4FE0068CF09 /* EditTaskView.swift in Sources */,
 				8A1F97882CAEE2570096A795 /* FirstScreenView.swift in Sources */,
 				8A1F97942CAEECDE0096A795 /* AddTaskViewController.swift in Sources */,
-				8A1F97972CAEEE9A0096A795 /* Utilities.swift in Sources */,
 				8A1F97922CAEECBB0096A795 /* AddTaskView.swift in Sources */,
 				8A1F978A2CAEE3680096A795 /* TableViewContactCell.swift in Sources */,
 				8A71DB272CBCAEFE0068CF09 /* EditTaskViewController.swift in Sources */,

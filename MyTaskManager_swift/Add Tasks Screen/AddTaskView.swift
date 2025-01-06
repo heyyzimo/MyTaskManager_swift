@@ -26,7 +26,6 @@ class AddTaskView: UIView {
         setupTextFieldDescription()
         setupStatusSwitch()  // New setup for UISwitch
         setupbuttonTakePhoto()
-        setupbuttonAdd()
         
         // Initializing constraints
         initConstraints()
@@ -96,12 +95,6 @@ class AddTaskView: UIView {
         self.addSubview(buttonTakePhoto)
     }
 
-    func setupbuttonAdd(){
-        buttonAdd = UIButton(type: .system)
-        buttonAdd.setTitle("Add Expense", for: .normal)
-        buttonAdd.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(buttonAdd)
-    }
 
     
     func setupLabelAddANewTask() {

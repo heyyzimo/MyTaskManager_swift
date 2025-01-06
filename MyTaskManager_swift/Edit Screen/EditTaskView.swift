@@ -9,14 +9,16 @@ class EditTaskScreenView: UIView {
     let statusLabel = UILabel()    // Label for switch
     let photoButton = UIButton()
 
+    /// 自定义视图的初始化方法
     override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
+        super.init(frame: frame) // 调用父类 UIView 的初始化器，初始化视图的 frame
+        setupView() // 调用自定义方法，配置视图的初始状态
     }
 
+    /// 必须实现的初始化方法，用于支持从 Interface Builder (Storyboard 或 Nib 文件) 加载视图
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupView()
+        super.init(coder: coder) // 调用父类 UIView 的初始化器，初始化视图的解码器
+        setupView() // 调用自定义方法，配置视图的初始状态
     }
 
     private func setupView() {
