@@ -15,6 +15,7 @@ class EditTaskViewController: UIViewController {
         title = "Edit Task"
 
         if let task = task {
+            //pass the previous task info
             editTaskScreen.titleTextField.text = task.title
             editTaskScreen.descriptionTextField.text = task.description
             editTaskScreen.statusSwitch.isOn = (task.status == "Completed") // true on, false not on

@@ -2,12 +2,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
-
-    
     // UI Components and Data
     let firstScreen = FirstScreenView()
     //初始化一个空的 Task 数组，表示目前还没有任务。
     var tasks = [Task]()
+    //same thing but a filtered one
     var filteredTasks = [Task]() // Holds the filtered tasks
     var isSearching = false // Tracks whether search is active
     let searchBar = UISearchBar() // Search bar
@@ -21,6 +20,7 @@ class ViewController: UIViewController {
         title = "My Tasks"
         
         // TableView Setup
+        //.none 是 UITableViewCell.SeparatorStyle的，不显示分隔线。
         firstScreen.tableViewTask.separatorStyle = .none
         firstScreen.tableViewTask.delegate = self
         firstScreen.tableViewTask.dataSource = self
@@ -130,7 +130,7 @@ extension ViewController: TaskDeletionDelegate {
 extension ViewController: EditTaskDelegate {
     
     // 当任务被更新时的回调方法
-    //  _  调用时可以省略参数名
+    //  _  调用时可以省略参数名updatedTask:
     func didUpdateTask(_ updatedTask: Task) {
         // 查找已更新任务在 tasks 数组中的索引
         //$0 引用当前传入的元素。
@@ -156,23 +156,31 @@ extension ViewController: EditTaskDelegate {
 
 // MARK: - UISearchBarDelegate
 extension ViewController: UISearchBarDelegate {
+    // 当搜索框中的文本发生变化时触发
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
+            // 如果搜索框为空，则停止搜索，清空过滤任务列表
             isSearching = false
             filteredTasks.removeAll()
         } else {
+            // 如果有输入内容，启用搜索模式，过滤任务列表
             isSearching = true
             filteredTasks = tasks.filter { task in
+                // 检查任务标题是否包含搜索文本（忽略大小写）
                 task.title?.lowercased().contains(searchText.lowercased()) ?? false
             }
         }
+        // 刷新任务表视图以显示过滤结果
         firstScreen.tableViewTask.reloadData()
     }
     
+    // 当用户点击搜索框的取消按钮时触发
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // 停止搜索模式，清空搜索框内容和过滤任务列表
         isSearching = false
         searchBar.text = ""
         filteredTasks.removeAll()
+        // 刷新任务表视图以恢复到初始任务列表
         firstScreen.tableViewTask.reloadData()
     }
 }

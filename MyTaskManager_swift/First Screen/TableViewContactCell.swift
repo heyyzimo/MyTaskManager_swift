@@ -44,11 +44,12 @@ class TableViewTaskCell: UITableViewCell {
         wrapperCellView.backgroundColor = .white
         wrapperCellView.layer.cornerRadius = 10.0
         wrapperCellView.layer.shadowColor = UIColor.gray.cgColor
+        // 设置阴影偏移量，这里为 `.zero`，表示阴影与视图完全重叠（无偏移）
         wrapperCellView.layer.shadowOffset = .zero
+        // 设置阴影的模糊半径，值越大，阴影越柔和
         wrapperCellView.layer.shadowRadius = 6.0
+        // 设置阴影的不透明度，0 表示完全透明，1 表示完全不透明
         wrapperCellView.layer.shadowOpacity = 0.7
-        
-        
         wrapperCellView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(wrapperCellView)
     }
@@ -75,19 +76,20 @@ class TableViewTaskCell: UITableViewCell {
     }
         
     
-    //MARK: unused methods...
+    // MARK: - Unused Methods
+
+    // 视图从 Interface Builder 加载时会调用此方法
     required init?(coder: NSCoder) {
+        // 因为我们不使用 Storyboard 或 XIB 文件，所以抛出错误
         fatalError("init(coder:) has not been implemented")
     }
+
+    // 视图从 NIB 或 Storyboard 加载完成后会调用此方法
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        // 此处可添加视图的额外初始化代码（如果需要）
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
     
     
     func initConstraints(){

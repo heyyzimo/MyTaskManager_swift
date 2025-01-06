@@ -79,9 +79,7 @@ class AddTaskViewController: UIViewController {
         view.endEditing(true)
     }
     
-    
-    var selectedNumber = "Cell"
-    
+        
     
     var delegate:ViewController!
     
@@ -114,8 +112,6 @@ class AddTaskViewController: UIViewController {
     }
 
 
-    
-  
 
        // MARK: - Helper Method to Show Alert
        func showAlert(message: String) {
@@ -123,9 +119,6 @@ class AddTaskViewController: UIViewController {
            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
            present(alert, animated: true, completion: nil)
        }
-    
-
-    
     
 
 }
