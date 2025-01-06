@@ -1,9 +1,3 @@
-//
-//  SceneDelegate.swift
-//  hw4
-//
-//  Created by Zimo Liu on 10/3/24.
-//
 
 import UIKit
 

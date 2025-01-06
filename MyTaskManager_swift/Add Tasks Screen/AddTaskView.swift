@@ -1,6 +1,5 @@
 import UIKit
 
-
 class AddTaskView: UIView {
     
     var labelAddANewTask: UILabel!

@@ -13,12 +13,7 @@ class AddTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
         addTaskScreen.buttonTakePhoto.menu = getMenuImagePicker()
-
-
         
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardOnTap))
@@ -27,7 +22,6 @@ class AddTaskViewController: UIViewController {
         
         
 
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .save, target: self,
             action: #selector(onSaveBarButtonTapped)

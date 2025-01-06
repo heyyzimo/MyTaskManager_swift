@@ -1,5 +1,3 @@
-
-
 import Foundation
 import UIKit
 
@@ -18,7 +16,6 @@ struct Task{
         self.description = description
         
         self.status = status
-    
         
         self.image = image
 
